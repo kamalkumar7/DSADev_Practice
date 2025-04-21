@@ -1,3 +1,1 @@
-# newRepo
-
-Adding few lines in Reame
+This Repo Contains the source code of personal practice code for DSA and Dev
