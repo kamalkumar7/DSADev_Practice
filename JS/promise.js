@@ -15,7 +15,7 @@ function asyncTask(name, delay, shouldFail = false) {
   const promise3 = asyncTask("Task 3", 1500);
   
 
-  // we can use this to run all these 3 asyn tast in parallel
+  // We can use this to run all these 3 async tast in parallel
   Promise.all([promise1, promise2, promise3])
     .then(results => {
       console.log("All tasks completed:");
@@ -25,4 +25,5 @@ function asyncTask(name, delay, shouldFail = false) {
       console.error("At least one task failed:");
       console.error(error);
     });
+    // It would take addition of all time if run parallely
   
