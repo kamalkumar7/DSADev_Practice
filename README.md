@@ -1,5 +1,5 @@
-This Repo Contains the source code of personal practice code for DSA and Dev.
+This Repo contains the source code for personal practice code for DSA and Development.
 
-Topics Covered 
-a.Js
-b.Ts
+Topics Covered <br/>
+a.Js <br/>
+b.Ts 
