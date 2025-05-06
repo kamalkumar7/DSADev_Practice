@@ -1,4 +1,4 @@
-const target = {
+const testObject = {
     message: "Hello, world!"
   };
   
@@ -6,11 +6,10 @@ const target = {
     get: function(target, prop, receiver) {
       console.log(`Getting property "${prop}"`);
       return Reflect.get(target, prop, receiver);
-    }
+    },
+ 
   };
   
-  const proxy = new Proxy(target, handler);
-  
+  const proxy = new Proxy(testObject, handler);  
   console.log(proxy.message);
   
-  // Output: Getting property "message" \n Hello, world!
