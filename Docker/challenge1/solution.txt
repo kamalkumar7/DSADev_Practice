@@ -1,0 +1,1 @@
+docker run -d --name website -p 8080:80 --rm -v "$PWD/website:/usr/share/nginx/html" nginx:latest
