@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import FormWithReducer from './hooks/UseReducer';
+import WindowWidthComponent from './hooks/customHook/WindowWidthComponent';
 function Home() {
   return (
     <>
@@ -12,6 +13,7 @@ function Home() {
           <li><Link to="/services">Services</Link></li>
           <li><Link to="/contact">Contact</Link></li>
           <li><Link to="/hooks/useReducer">useReducer</Link></li>
+          <li><Link to="/hooks/custom">custom hook</Link></li>
 
         </ul>
       </nav>
@@ -31,16 +33,22 @@ function Services() {
 function Contact() {
   return <h2>Contact Page</h2>;
 }
+function Navigation() {
+  const location = useLocation();
+  return location.pathname !== '/' ? <p><Link to="/">Home</Link></p> : null;
+}
+
 function App() {
   return (
     <Router>
-
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/hooks/useReducer" element={<FormWithReducer />} />
+        <Route path="/hooks/custom" element={<WindowWidthComponent />} />
       </Routes>
     </Router>
   );
