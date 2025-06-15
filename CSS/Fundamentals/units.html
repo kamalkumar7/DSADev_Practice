@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Unit Differences</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for demonstration, using Inter font */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f4f8; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to start for better scrolling */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding: 2rem; /* Add some padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        .unit-box {
+            border: 2px solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            padding: 1rem;
+            margin-bottom: 2rem; /* Space between boxes */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .px-box {
+            background-color: #ef4444; /* Red-500 */
+            width: 150px; /* Fixed width in pixels */
+            height: 100px; /* Fixed height in pixels */
+            border-color: #b91c1c; /* Red-700 */
+        }
+
+        .percent-box {
+            background-color: #3b82f6; /* Blue-500 */
+            width: 50%; /* 50% of parent's width (container) */
+            height: 20%; /* 20% of parent's height (container, but often problematic without explicit parent height) */
+            border-color: #1d4ed8; /* Blue-700 */
+        }
+
+        .vh-box {
+            background-color: #22c55e; /* Green-500 */
+            width: 30vw; /* 30% of viewport width */
+            height: 20vh; /* 20% of viewport height */
+            border-color: #15803d; /* Green-700 */
+        }
+
+        .rem-box {
+            background-color: #a855f7; /* Purple-500 */
+            width: 10rem; /* 10 times the root font-size */
+            height: 5rem; /* 5 times the root font-size */
+            border-color: #7e22ce; /* Purple-700 */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack boxes vertically on small screens */
+            }
+            .unit-box {
+                width: 90% !important; /* Make boxes take more width on small screens */
+                height: auto !important; /* Allow height to adjust */
+            }
+            .vh-box {
+                height: 15vh !important; /* Adjust vh box height for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container bg-white p-6 rounded-xl shadow-lg w-full max-w-4xl">
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">CSS Unit Differences</h1>
+        <p class="text-gray-600 text-lg mb-8 text-center leading-relaxed">
+            This page demonstrates the behavior of different CSS units: `px` (pixels), `%` (percentage), `vh` (viewport height), and `rem` (root em). Resize your browser window to see how each unit responds!
+        </p>
+
+        <!-- Pixel (px) Example -->
+        <div class="unit-box px-box">
+            <div class="text-xl">150px Width / 100px Height</div>
+            <div class="text-sm mt-2">(Absolute, fixed size)</div>
+        </div>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            <span class="font-semibold text-lg text-red-600">Pixels (px):</span> This is an absolute unit. A pixel is a fixed size (usually 1/96th of an inch) and does not scale with the viewport or font size. Elements styled with `px` will maintain their exact dimensions regardless of screen size or user preferences, which can lead to layout issues on different devices.
+        </p>
+
+        <!-- Percentage (%) Example -->
+        <div class="unit-box percent-box">
+            <div class="text-xl">50% Width / 20% Height</div>
+            <div class="text-sm mt-2">(Relative to parent)</div>
+        </div>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            <span class="font-semibold text-lg text-blue-600">Percentage (%):</span> This is a relative unit, always calculated based on the parent element's size. For width, it's relative to the parent's width; for height, it's relative to the parent's height. If the parent's size changes (e.g., due to resizing the browser), the element's size will change proportionally. Note that height percentages require the parent to have a defined height.
+        </p>
+
+        <!-- Viewport Height (vh) Example -->
+        <div class="unit-box vh-box">
+            <div class="text-xl">30vw Width / 20vh Height</div>
+            <div class="text-sm mt-2">(Relative to viewport dimensions)</div>
+        </div>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            <span class="font-semibold text-lg text-green-600">Viewport Height/Width (vh/vw):</span> These are relative units based on the dimensions of the browser's viewport.
+            <ul class="list-disc list-inside ml-4 mt-2">
+                <li><span class="font-medium">1vh</span> equals 1% of the viewport's height.</li>
+                <li><span class="font-medium">1vw</span> equals 1% of the viewport's width.</li>
+            </ul>
+            This makes elements scale directly with the browser window size, ideal for full-screen sections or responsive layouts that need to adapt to the visible screen area.
+        </p>
+
+        <!-- Root EM (rem) Example -->
+        <div class="unit-box rem-box">
+            <div class="text-xl">10rem Width / 5rem Height</div>
+            <div class="text-sm mt-2">(Relative to root font-size)</div>
+        </div>
+        <p class="text-gray-700 mb-8 leading-relaxed">
+            <span class="font-semibold text-lg text-purple-600">Root EM (rem):</span> This is a relative unit based on the `font-size` of the root HTML element (`<html>`). By default, browsers set the root `font-size` to 16px, so 1rem = 16px. If a user changes their browser's default font size or if you explicitly set `font-size` on the `html` element, `rem` values will scale accordingly, making them excellent for accessible and scalable typography and layouts.
+        </p>
+
+        <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded-lg">
+            <p class="font-semibold mb-2">Try it out!</p>
+            <p>To see the differences in action, resize your browser window or open this page on different devices. Watch how the size of each colored box changes (or doesn't change) based on its defined unit.</p>
+        </div>
+    </div>
+</body>
+</html>
