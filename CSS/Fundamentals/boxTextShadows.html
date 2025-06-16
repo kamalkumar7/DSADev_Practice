@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Shadow vs. Text Shadow</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-100 min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-2xl space-y-10 max-w-4xl">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Understanding Shadows: <br class="sm:hidden"> Box Shadow vs. Text Shadow
+            </h1>
+            <p class="mt-4 text-lg text-gray-600">
+                Explore how CSS shadows add depth and visual appeal to elements and text.
+            </p>
+        </header>
+
+        <!-- Box Shadow Section -->
+        <section class="flex flex-col md:flex-row items-center bg-blue-50 p-6 rounded-lg shadow-inner-lg">
+            <div class="md:w-1/2 p-4 text-center">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Box Shadow</h2>
+                <p class="text-gray-700 text-lg mb-6">
+                    The <code class="bg-blue-200 px-2 py-1 rounded-md text-blue-900 font-mono">box-shadow</code> property applies a shadow effect to an element's entire box. It can be used to create depth, lift elements off the page, or add decorative effects.
+                </p>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
+                    <p class="text-xl font-semibold text-gray-800">Example Box</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 p-4">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Syntax & Effect:</h3>
+                <pre class="bg-blue-800 text-white p-4 rounded-lg text-sm md:text-base overflow-x-auto"><code>.element-with-shadow {
+    box-shadow: <span class="text-yellow-300">offset-x offset-y blur-radius spread-radius color</span>;
+    /* Example: */
+    box-shadow: 8px 8px 15px 2px rgba(0, 0, 0, 0.4);
+}</code></pre>
+                <ul class="list-disc list-inside mt-4 text-gray-700 text-base space-y-1">
+                    <li><span class="font-semibold">offset-x:</span> Horizontal shadow position.</li>
+                    <li><span class="font-semibold">offset-y:</span> Vertical shadow position.</li>
+                    <li><span class="font-semibold">blur-radius:</span> Blur effect distance.</li>
+                    <li><span class="font-semibold">spread-radius:</span> Shadow size extension.</li>
+                    <li><span class="font-semibold">color:</span> Color of the shadow.</li>
+                    <li>Can also include <code class="bg-blue-200 px-1 rounded-sm text-blue-900 font-mono">inset</code> for an inner shadow.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Text Shadow Section -->
+        <section class="flex flex-col md:flex-row-reverse items-center bg-green-50 p-6 rounded-lg shadow-inner-lg">
+            <div class="md:w-1/2 p-4 text-center">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Text Shadow</h2>
+                <p class="text-gray-700 text-lg mb-6">
+                    The <code class="bg-green-200 px-2 py-1 rounded-md text-green-900 font-mono">text-shadow</code> property applies a shadow effect to the text content itself. It's useful for enhancing readability or creating artistic typographic effects.
+                </p>
+                <p class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 text-shadow-example transition-all duration-300 ease-in-out">
+                    Shadowed Text
+                </p>
+            </div>
+            <div class="md:w-1/2 p-4">
+                <h3 class="text-2xl font-semibold text-green-700 mb-3">Syntax & Effect:</h3>
+                <pre class="bg-green-800 text-white p-4 rounded-lg text-sm md:text-base overflow-x-auto"><code>.text-with-shadow {
+    text-shadow: <span class="text-yellow-300">offset-x offset-y blur-radius color</span>;
+    /* Example: */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}</code></pre>
+                <ul class="list-disc list-inside mt-4 text-gray-700 text-base space-y-1">
+                    <li><span class="font-semibold">offset-x:</span> Horizontal shadow position.</li>
+                    <li><span class="font-semibold">offset-y:</span> Vertical shadow position.</li>
+                    <li><span class="font-semibold">blur-radius:</span> Blur effect distance.</li>
+                    <li><span class="font-semibold">color:</span> Color of the shadow.</li>
+                    <li>Does not have a <code class="bg-green-200 px-1 rounded-sm text-green-900 font-mono">spread-radius</code> like <code class="bg-green-200 px-1 rounded-sm text-green-900 font-mono">box-shadow</code>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="text-center mt-10 text-gray-600 text-sm">
+            <p>&copy; 2025 Shadow Demo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Custom CSS for text-shadow example as Tailwind doesn't have a direct utility -->
+    <style>
+        .text-shadow-example {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Default shadow */
+        }
+        /* Hover effect for text shadow */
+        .text-shadow-example:hover {
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+        }
+    </style>
+</body>
+</html>
