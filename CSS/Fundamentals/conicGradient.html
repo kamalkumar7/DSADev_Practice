@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a Conic Gradient?</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom CSS for the conic gradient example */
+        .conic-gradient-box {
+            /* Defines a conic gradient:
+               - starting at 45 degrees (from the top, rotating clockwise)
+               - centered at 50% 50% (the exact middle of the box)
+               - transitioning from red (0%) to yellow (25%) to lime (50%) to blue (75%) to purple (100%)
+            */
+            background: conic-gradient(
+                from 45deg at 50% 50%,
+                #ef4444 0%,      /* Red at 0% */
+                #facc15 25%,     /* Yellow at 25% */
+                #a7f3d0 50%,     /* Light Green/Teal at 50% */
+                #60a5fa 75%,     /* Blue at 75% */
+                #a855f7 100%     /* Purple at 100% */
+            );
+            /* Ensure the box is square and large enough to see the gradient clearly */
+            width: 280px;
+            height: 280px;
+            /* Make it a circle */
+            border-radius: 9999px; /* Full border-radius for a circle */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+        }
+
+        .conic-gradient-box:hover {
+            transform: scale(1.05) rotate(10deg); /* Slight scale and rotation on hover */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-indigo-100 min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-2xl space-y-10 max-w-4xl text-gray-800">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                Understanding Conic Gradients
+            </h1>
+            <p class="mt-4 text-lg text-gray-600">
+                A unique way to blend colors around a central point.
+            </p>
+        </header>
+
+        <!-- Conic Gradient Explanation Section -->
+        <section class="flex flex-col md:flex-row items-center bg-fuchsia-50 p-6 rounded-lg shadow-inner-lg">
+            <div class="md:w-1/2 p-4 text-center">
+                <h2 class="text-3xl font-bold text-fuchsia-800 mb-4">What is a Conic Gradient?</h2>
+                <p class="text-gray-700 text-lg mb-6">
+                    Unlike linear or radial gradients, a <code class="bg-fuchsia-200 px-2 py-1 rounded-md text-fuchsia-900 font-mono">conic-gradient()</code>
+                    distributes colors around a central point, along a circular path. Imagine a pie chart or a color wheel – that's
+                    how a conic gradient works!
+                </p>
+                <!-- Conic Gradient Example Box -->
+                <div class="conic-gradient-box mx-auto">
+                    <!-- This div is where the conic gradient background is applied via CSS -->
+                </div>
+            </div>
+            <div class="md:w-1/2 p-4">
+                <h3 class="text-2xl font-semibold text-fuchsia-700 mb-3">Syntax & Properties:</h3>
+                <pre class="bg-fuchsia-800 text-white p-4 rounded-lg text-sm md:text-base overflow-x-auto"><code>.element-with-conic-gradient {
+    background: conic-gradient(
+        [from &lt;angle&gt;]
+        [at &lt;position&gt;],
+        &lt;color-stop-list&gt;
+    );
+    /* Example used in this demo: */
+    background: conic-gradient(
+        from 45deg at 50% 50%,
+        red 0%,
+        yellow 25%,
+        lime 50%,
+        blue 75%,
+        purple 100%
+    );
+}</code></pre>
+                <ul class="list-disc list-inside mt-4 text-gray-700 text-base space-y-2">
+                    <li><span class="font-semibold text-fuchsia-800">from &lt;angle&gt;:</span> Optional. Specifies the starting angle of the gradient. Default is <code class="bg-fuchsia-200 px-1 rounded-sm text-fuchsia-900 font-mono">0deg</code> (top, pointing upwards).</li>
+                    <li><span class="font-semibold text-fuchsia-800">at &lt;position&gt;:</span> Optional. Defines the center point of the gradient. Default is <code class="bg-fuchsia-200 px-1 rounded-sm text-fuchsia-900 font-mono">center</code> (or <code class="bg-fuchsia-200 px-1 rounded-sm text-fuchsia-900 font-mono">50% 50%</code>).</li>
+                    <li><span class="font-semibold text-fuchsia-800">color-stop-list:</span> A comma-separated list of colors and optional stop positions (e.g., <code class="bg-fuchsia-200 px-1 rounded-sm text-fuchsia-900 font-mono">red 0%</code>, <code class="bg-fuchsia-200 px-1 rounded-sm text-fuchsia-900 font-mono">blue 100%</code>).</li>
+                    <li>Colors progress clockwise around the center point.</li>
+                </ul>
+                <p class="mt-4 text-gray-700 text-base">
+                    Conic gradients are perfect for creating color wheels, pie charts, fancy buttons, and other radial designs.
+                </p>
+            </div>
+        </section>
+
+        <footer class="text-center mt-10 text-gray-600 text-sm">
+            <p>&copy; 2025 Conic Gradient Demo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
