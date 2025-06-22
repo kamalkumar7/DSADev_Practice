@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-class Demonstration</title>
+    <!-- Link to Tailwind CSS for basic styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply Inter font and basic styling to body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Container for the demonstration */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: bold;
+        }
+
+        /* Styling for the buttons */
+        .my-button {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Pseudo-class: :hover - changes background on mouse hover */
+        .my-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Pseudo-class: :active - changes background when button is clicked */
+        .my-button:active {
+            background-color: #3e8e41;
+            transform: translateY(0);
+        }
+
+        /* Styling for input field */
+        .my-input {
+            padding: 10px 15px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: calc(100% - 20px); /* Adjust for margin */
+            max-width: 300px;
+        }
+
+        /* Pseudo-class: :focus - changes border and adds shadow when input is focused */
+        .my-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Styling for the list items */
+        .my-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .my-list li {
+            background-color: #e9ecef;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            color: #495057;
+            transition: background-color 0.3s ease;
+        }
+
+        .my-list li:hover {
+            background-color: #d0d5d9;
+        }
+
+        /* Pseudo-class: :first-child - styles the first list item */
+        .my-list li:first-child {
+            background-color: #ffebcc;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        /* Pseudo-class: :last-child - styles the last list item */
+        .my-list li:last-child {
+            background-color: #ccf3ff;
+            font-style: italic;
+            color: #007bff;
+        }
+
+        /* Pseudo-class: :nth-child(even) - styles every even list item */
+        .my-list li:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Pseudo-class: :nth-child(odd) - styles every odd list item */
+        .my-list li:nth-child(odd) {
+            background-color: #e9ecef; /* default, but good for explicit override */
+        }
+
+        /* Pseudo-class: :nth-child(3n) - styles every 3rd list item (e.g., 3rd, 6th, etc.) */
+        .my-list li:nth-child(3n) {
+            border-left: 5px solid #6c757d;
+            padding-left: 10px; /* Adjust padding due to border */
+        }
+
+        /* Styling for anchor links */
+        .my-link {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        /* Pseudo-class: :visited - styles visited links */
+        .my-link:visited {
+            color: #663399; /* Purple */
+        }
+
+        /* Pseudo-class: :link - styles unvisited links (default for unvisited) */
+        .my-link:link {
+            color: #007bff; /* Blue */
+        }
+
+        /* Pseudo-class: :not(:last-child) - applies margin to all elements except the last one */
+        .flex-row > *:not(:last-child) {
+            margin-right: 15px;
+        }
+
+        /* General section styling */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flex-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pseudo-class Demonstration</h1>
+
+        <div class="section-title">Button States (:hover, :active)</div>
+        <div class="flex-row">
+            <button class="my-button">Hover Me</button>
+            <button class="my-button">Click Me</button>
+        </div>
+
+        <div class="section-title">Input Focus (:focus)</div>
+        <div class="flex-row">
+            <input type="text" class="my-input" placeholder="Focus on me">
+        </div>
+
+        <div class="section-title">List Item Positions (:first-child, :last-child, :nth-child)</div>
+        <div class="flex-col">
+            <ul class="my-list">
+                <li>List Item 1 (First Child)</li>
+                <li>List Item 2 (Even)</li>
+                <li>List Item 3 (Odd, 3n)</li>
+                <li>List Item 4 (Even)</li>
+                <li>List Item 5 (Odd)</li>
+                <li>List Item 6 (Even, 3n)</li>
+                <li>List Item 7 (Last Child)</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Link States (:link, :visited)</div>
+        <div class="flex-row">
+            <a href="#demo-link-1" class="my-link">Unvisited Link</a>
+            <a href="https://www.google.com" target="_blank" class="my-link">Visited Google (opens new tab)</a>
+        </div>
+    </div>
+</body>
+</html>
