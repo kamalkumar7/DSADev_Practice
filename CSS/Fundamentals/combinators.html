@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Next Sibling Combinator (+)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles for presentation */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            background-color: #f9fafb; /* gray-50 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827; /* gray-900 */
+        }
+        p, div.some-other-element {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            color: #374151; /* gray-700 */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /*
+           ================================================================
+           THE NEXT SIBLING COMBINATOR (+)
+           ================================================================
+           The rule below selects any <p> element that is placed
+           IMMEDIATELY after an <h2> element.
+
+           - Both elements must have the same parent.
+           - The <p> must come right after the <h2> in the HTML with
+             no other elements in between.
+        */
+        h2 + p {
+            background-color: #dbeafe; /* blue-200 */
+            color: #1e40af; /* blue-800 */
+            border-left: 5px solid #3b82f6; /* blue-500 */
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Next Sibling Combinator (+)</h1>
+
+        <p>This is a regular paragraph, not adjacent to the H2.</p>
+
+        <h2>An Example Heading</h2>
+
+        <p>
+            <strong>This paragraph IS selected.</strong>
+            <br>
+            It immediately follows the `h2` element, so the `h2 + p` rule applies to it.
+        </p>
+
+        <p>
+            <strong>This paragraph is NOT selected.</strong>
+            <br>
+            Although it's a sibling of the `h2`, it doesn't come *immediately* after it. The paragraph above is in the way.
+        </p>
+
+        <div class="some-other-element">
+            This is just a div, not a paragraph.
+        </div>
+
+        <p>
+            <strong>This paragraph is also NOT selected.</strong>
+            <br>
+            It comes after the `h2`, but the `div` element is between them, breaking the immediate adjacency.
+        </p>
+
+    </div>
+
+</body>
+</html>
