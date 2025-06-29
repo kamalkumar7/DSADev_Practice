@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Float Example</title>
+  <style>
+    .container {
+      width: 90%;
+      margin: 20px auto;
+      border: 2px solid #ccc;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    .box-left {
+      float: left;
+      width: 150px;
+      height: 150px;
+      background-color: lightcoral;
+      margin-right: 20px;
+    }
+
+    .box-right {
+      float: right;
+      width: 150px;
+      height: 150px;
+      background-color: lightblue;
+      margin-left: 20px;
+    }
+
+    .content {
+      overflow: auto; /* helps contain floated elements */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="box-left"></div>
+      <div class="box-right"></div>
+      <p>
+        This paragraph flows between the left- and right-floated boxes.
+        The text wraps around the floating elements because they’re taken out of the normal flow.
+        Use float to align elements beside each other—like images and text—but be cautious as it can affect layout if not cleared or contained properly.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
