@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Container Queries Demo</title>
+    <!-- Tailwind CSS CDN for basic styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to show multiple cards */
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        /* Define the container for our cards */
+        /* We set container-type: inline-size to query based on width */
+        .card-wrapper {
+            container-type: inline-size; /* Essential for container queries based on width */
+            border: 2px dashed #93c5fd; /* Dashed blue border for the container */
+            background-color: #e0f2fe; /* Lighter blue background for the container */
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            display: flex; /* Use flex to control the wrapper's content */
+            justify-content: center; /* Center the card inside its wrapper */
+            align-items: center;
+            min-height: 200px; /* Minimum height for better visualization */
+        }
+
+        /* Styles for the actual card component */
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* More prominent shadow for the card */
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column; /* Default: stack image and text vertically */
+            align-items: center;
+            text-align: center;
+            max-width: 100%; /* Ensure card doesn't overflow its wrapper */
+        }
+
+        .card-image {
+            width: 100%; /* Image takes full width of card by default */
+            max-width: 200px; /* Max width for image to prevent it from becoming too large */
+            height: auto;
+            border-radius: 0.5rem; /* Slightly less rounded corners for image */
+            margin-bottom: 1rem;
+            object-fit: cover; /* Ensure image covers its area without distortion */
+        }
+
+        .card-title {
+            font-size: 1.5rem; /* Larger title */
+            font-weight: 700; /* Bold title */
+            color: #1f2937; /* Dark gray text */
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: #4b5563; /* Medium gray text */
+            line-height: 1.5;
+        }
+
+        /*
+         * Container Query: When the .card-wrapper is at least 450px wide,
+         * change the layout of the .card inside it to be horizontal.
+         */
+        @container (min-width: 450px) {
+            .card {
+                flex-direction: row; /* Arrange image and text horizontally */
+                text-align: left; /* Align text to left */
+                align-items: flex-start; /* Align items to the start of the cross axis */
+                gap: 1.5rem; /* Space between image and text */
+            }
+
+            .card-image {
+                width: 180px; /* Fixed width for image in horizontal layout */
+                flex-shrink: 0; /* Prevent image from shrinking */
+                margin-bottom: 0; /* Remove bottom margin */
+            }
+
+            .card-content {
+                flex-grow: 1; /* Allow content to take remaining space */
+            }
+        }
+
+        /*
+         * Container Query: When the .card-wrapper is at least 700px wide,
+         * make the image slightly larger and adjust font sizes.
+         */
+        @container (min-width: 700px) {
+            .card-image {
+                width: 250px; /* Larger image for very wide containers */
+            }
+            .card-title {
+                font-size: 1.875rem; /* Even larger title */
+            }
+            .card-description {
+                font-size: 1.125rem; /* Slightly larger description text */
+            }
+        }
+
+        /* Styles for the main layout to arrange card wrappers */
+        .main-layout {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            gap: 2rem; /* Space between card wrappers */
+            justify-content: center; /* Center the wrappers */
+            width: 100%;
+            max-width: 1200px; /* Max width for the entire layout */
+        }
+
+        /* Specific widths for demonstration purposes */
+        .wrapper-narrow {
+            width: 300px; /* This will trigger the stacked layout */
+        }
+
+        .wrapper-medium {
+            width: 550px; /* This will trigger the horizontal layout (min-width: 450px) */
+        }
+
+        .wrapper-wide {
+            width: 800px; /* This will trigger the larger horizontal layout (min-width: 700px) */
+        }
+
+        .wrapper-fluid {
+            width: 90%; /* This wrapper will adapt to the viewport, demonstrating fluid behavior */
+            max-width: 900px;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="main-layout">
+        <!-- Narrow Card Example -->
+        <div class="card-wrapper wrapper-narrow">
+            <div class="card">
+                <img src="https://placehold.co/200x150/81e6d9/ffffff?text=Image+1" alt="Placeholder Image" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Narrow Card</h3>
+                    <p class="card-description">This card is in a narrow container, so the image is stacked above the text. Observe how it adapts.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Card Example -->
+        <div class="card-wrapper wrapper-medium">
+            <div class="card">
+                <img src="https://placehold.co/200x150/63b3ed/ffffff?text=Image+2" alt="Placeholder Image" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Medium Card</h3>
+                    <p class="card-description">This card is in a medium-width container. The image is now beside the text, thanks to container queries!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wide Card Example -->
+        <div class="card-wrapper wrapper-wide">
+            <div class="card">
+                <img src="https://placehold.co/200x150/a78bfa/ffffff?text=Image+3" alt="Placeholder Image" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Wide Card</h3>
+                    <p class="card-description">In this wider container, the image is larger and the text has adjusted, showcasing further adaptability.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fluid Card Example (resize your browser to see this one change!) -->
+        <div class="card-wrapper wrapper-fluid">
+            <div class="card">
+                <img src="https://placehold.co/200x150/fbd38d/ffffff?text=Image+4" alt="Placeholder Image" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">Fluid Card</h3>
+                    <p class="card-description">This card's container changes size with the viewport. Resize your browser window to see its layout dynamically adapt!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
