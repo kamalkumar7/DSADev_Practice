@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .container {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+
+    .box {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      opacity: 0.9;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .box1 {
+      background: crimson;
+      top: 20px;
+      left: 20px;
+      z-index: 1;
+    }
+
+    .box2 {
+      background: steelblue;
+      top: 40px;
+      left: 60px;
+      z-index: 2; /* appears above box1 */
+    }
+
+    .box3 {
+      background: green;
+      top: 60px;
+      left: 100px;
+      z-index: 0; /* appears below both boxes */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box box1">Box 1</div>
+    <div class="box box2">Box 2</div>
+    <div class="box box3">Box 3</div>
+  </div>
+</body>
+</html>
