@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="clipped-box">
+        This text will be partially clipped. A B C D E F G H I J
+    </div>
+
+    <style>
+        .clipped-box {
+            position: absolute;
+            /* Required for clip to work */
+            top: 50px;
+            left: 50px;
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            clip: rect(20px, 180px, 80px, 20px);
+            /* Clip from 20px top, 180px right, etc. */
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
